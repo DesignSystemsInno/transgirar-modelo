@@ -5,7 +5,18 @@ model = load_model('model2.h5')
 
 
 app = FastAPI()
-
+origins = [
+ "http://18.116.59.243",
+ "http://18.191.58.131",
+ "http://p2transredneuronal.ml"
+]
+app.add_middleware(
+ CORSMiddleware,
+ allow_origins=origins,
+ allow_credentials=True,
+ allow_methods=["*"],
+ allow_headers=["*"],
+)
 @app.get('/')
 def welcome():
     return {
